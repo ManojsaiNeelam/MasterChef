@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MasterChef</title>
+    <style>
+    /* ---------- Mobile Devices ---------- */
+
+        @media (max-width: 768px) 
+        {
+        header.row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 10px;
+        }
+
+        header.row h1 {
+        font-size: 10px;
+        margin: 10px 0;
+        }
+
+        .nav-container {
+        flex-direction: column;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 10px;
+        align-items: flex-start;
+        }
+
+        .search-bar {
+        width: 60%;
+        margin-left: 0;
+        margin-bottom: 10px;
+        }
+
+        .search-bar input[type="text"] {
+        width: 70%;
+        box-sizing: border-box;
+        }
+
+        .search-bar button {
+        width: 35%;
+        margin-left: 5%;
+        }
+
+        .nav-list {
+        display: block;
+        max-height: 4.5em; /* about 3 lines */
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        }
+
+        .nav-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        }
+
+        /* Show More label styling */
+        .show-more-label {
+        display: inline-block;
+        margin-top: 10px;
+        cursor: pointer;
+        color: blue;
+        user-select: none;
+        }
+
+        /* When checkbox is checked, expand nav */
+        .toggle-checkbox:checked ~ .nav-list {
+        max-height: 100vh; /* large to show all items */
+        }
+
+        /* Change label text when checked */
+        .toggle-checkbox:checked ~ .show-more-label::after {
+        content: " Show Less";
+        }
+        .show-more-label::after {
+        content: " Show More";
+        }
+        .overlay-text {
+        font-size: 1.2rem;
+        padding: 10px 15px;
+        width: 90%;
+        white-space: normal; /* allow wrapping on small screens */
+        }
+
+        header.row h1 {
+        font-size: 16px;
+        }
+
+        .nav-container {
+        flex-direction: column;
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 10px;
+        align-items: flex-start;
+        }
+
+        .search-bar {
+        width: 90%;
+        margin: 10px 0;
+        }
+
+        .search-bar input[type="text"] {
+        width: 70%;
+        }
+
+        .search-bar button {
+        width: 30%;
+        margin-left: 5%;
+        }
+
+        .nav-list {
+        display: block;
+        max-height: 4.5em;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        }
+
+        .nav-list li {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        }
+
+        .show-more-label {
+        display: inline-block;
+        margin-top: 10px;
+        cursor: pointer;
+        color: blue;
+        user-select: none;
+        }
+        }
+        /* ---------- Desktop: Hide Show More Label ---------- */
+        @media (min-width: 601px) {
+        .show-more-label {
+        display: none;
+        }
+        }
+
+
+        /* ---------- Base Styling ---------- */
+        header.row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #FFF085;
+        color: black;
+        padding: 30px 20px;;
+        }
+
+        .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        }
+
+        .brand h1 {
+        margin: 0;
+        font-size: 24px;
+        }
+
+        .logo {
+        height: 60px;
+        width: auto;
+        }
+
+        nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        }
+
+        nav ul li {
+        margin-left: 20px;
+        }
+
+        nav ul li a {
+        color: black;
+        text-decoration: none;
+        font-size: 16px;
+        }
+
+        nav ul li a:hover {
+        text-decoration: underline;
+        }
+        .search-bar {
+        margin-left: 20px;
+        }
+
+        .search-bar input[type="text"] {
+        padding: 6px 10px;
+        border: none;
+        border-radius: 4px;
+        }
+
+        .search-bar button {
+        padding: 6px 10px;
+        background-color: #04AA6D;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 5px;
+        }
+
+        .search-bar button:hover {
+        background-color: #028f5b;
+        }
+
+        .nav-container {
+        display: flex;
+        align-items: center;
+        flex: 2;
+        justify-content: flex-end;
+        }
+        .contact-section {
+        background-color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+        }
+
+        .contact-container {
+        max-width: 600px;
+        margin: 0 auto;
+        }
+
+        .contact-section h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        }
+
+        .contact-section p {
+        color: #555;
+        margin-bottom: 25px;
+        font-size: 1rem;
+        }
+
+        .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        width: 100%;
+        }
+
+        .contact-form button {
+        background-color: #007bff;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+        background-color: #0056b3;
+        }
+
+
+        .footer {
+        background-color: #222;
+        color: #fff;
+        padding: 20px 20px;
+        text-align: center;
+        font-size: 0.9rem;
+        margin-top: 25px;
+        }
+
+        .footer-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        }
+
+        .footer-links {
+        margin-top: 10px;
+        }
+
+        .footer-links a {
+        color: #bbb;
+        margin: 0 10px;
+        text-decoration: none;
+        transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+        color: #fff;
+        }
+    </style>
+</head>
+  <body>
+    <div class="col-12 col-lg-6 col-md-6 col-sm-12">
+        <header class="row">
+            <div class="brand">
+                <a href="index.html">
+                <img src="data:image/png;base64,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" alt="MasterChef Logo" class="logo">
+                </a>
+                <h1>MasterChef</h1>
+            </div>
+
+            <div class="hamburger" id="hamburger"></div>
+
+            <div class="nav-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit">Search</button>
+                </div>
+
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <!-- Contact Us Section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h2>📬 Contact Us</h2>
+            <p>Have a recipe to share, feedback, or just want to say hi? We'd love to hear from you!</p>
+            
+            <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+        <p>&copy; 2025 MyRecipeBook. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms</a>
+            <a href="#">Contact</a>
+        </div>
+        </div>
+    </footer>
+
+    </body>
+</html>
